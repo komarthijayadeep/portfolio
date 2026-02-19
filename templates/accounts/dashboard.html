@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+<p>Welcome back, {{ user.username }}!</p>
+
+<div class="dashboard-card">
+    <h2>Your Profile</h2>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+
+    {% if user.profile %}
+    <p><strong>Name:</strong> {{ user.profile.name }}</p>
+    <p><strong>Bio:</strong> {{ user.profile.bio }}</p>
+    <p><strong>Skills:</strong> {{ user.profile.skills }}</p>
+    {% else %}
+    <p>No profile details found.</p>
+    {% endif %}
+</div>
+
+{% if user.is_staff %}
+<div style="margin-top: 30px;">
+    <h2>Admin Actions</h2>
+    <a href="{% url 'admin:index' %}" class="btn">Go to Admin Panel</a>
+</div>
+{% endif %}
+
+<div style="margin-top: 30px;">
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn" style="background-color: #e74c3c;">Logout</button>
+    </form>
+</div>
+{% endblock %}

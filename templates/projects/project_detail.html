@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+<article class="project-detail">
+    <h1>{{ project.title }}</h1>
+
+    {% if project.image %}
+    <img src="{{ project.image.url }}" alt="{{ project.title }}"
+        style="max-width: 100%; border-radius: 8px; margin-bottom: 20px;">
+    {% endif %}
+
+    <div class="project-meta">
+        <p><strong>Created:</strong> {{ project.created_date|date:"F j, Y" }}</p>
+        <div class="tech-stack" style="margin-bottom: 20px;">
+            {% for tech in project.tech_stack.split %}
+            <span class="tech-tag">{{ tech }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="links" style="margin-bottom: 20px;">
+            {% if project.github_link %}
+            <a href="{{ project.github_link }}" class="btn" target="_blank">View Code</a>
+            {% endif %}
+            {% if project.live_demo_link %}
+            <a href="{{ project.live_demo_link }}" class="btn" target="_blank">Live Demo</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="project-description">
+        {{ project.description|linebreaks }}
+    </div>
+
+    <a href="{% url 'project_list' %}" style="display: inline-block; margin-top: 30px;">&larr; Back to Projects</a>
+</article>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero">
+    <img src="{% static 'images/linkdin.png' %}" alt="Profile Picture" class="profile-img">
+    <h1>Welcome to My Portfolio</h1>
+    <p>Hi, I am a Cyber Security Student | Certified Ethical Hacker V13 (CEH) | TryHackme Top 8% | Vulnerability
+        Assessment | Network Security |Certified AI Security Specialist (CAISS) | Linux | CTF Player.</p>
+    <br><br>
+    <a href="{% url 'project_list' %}" class="btn">View My Work</a>
+    <br><br>
+    <p>A dedicated and detail-oriented cybersecurity student with a passion for ethical hacking and network defense. My
+        journey into security is built on a solid foundation in computer networking, validated by certifications from
+        Google and the University of Colorado.I also progressed in CAISS.
+
+        I have progressed to advanced, hands-on skills in Vulnerability Assessment and Penetration Testing (VAPT),
+        moving from fundamental principles to advanced ethical hacking techniques. My proficiency in Python allows me to
+        move beyond using off-the-shelf tools, enabling me to script custom solutions and automate security tasks
+        effectively.
+
+        Core Competencies:
+
+        Ethical Hacking & VAPT: Comprehensive training in identifying, analyzing, and mitigating system vulnerabilities.
+
+        Network Security: In-depth knowledge of network protocols, infrastructure, and secure communication.
+
+        Python for Security: Proven ability to develop custom scripts for reconnaissance and task automation.
+
+        Emerging Threats: Knowledgeable in modern security challenges, including AI and Generative AI systems.
+
+        As an ISC2 Candidate, I am committed to continuous learning and upholding the highest ethical standards in the
+        industry. I am actively seeking an internship or entry-level role where I can apply my skills to solve
+        real-world security challenges and contribute to a dynamic security team</p>
+</section>
+
+<section class="recent-projects">
+    <h2>Recent Projects</h2>
+    <div class="project-grid">
+        {% for project in projects %}
+        <div class="project-card">
+            {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+            {% else %}
+            <div class="project-image"
+                style="background-color: #ddd; display: flex; align-items: center; justify-content: center;">No Image
+            </div>
+            {% endif %}
+            <div class="project-content">
+                <h3><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></h3>
+                <p>{{ project.description|truncatewords:20 }}</p>
+                <div class="tech-stack">
+                    {% for tech in project.tech_stack.split %}
+                    <span class="tech-tag">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No projects yet.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

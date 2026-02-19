@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+<h1>About Me</h1>
+
+<section class="about-section">
+    <h2>Education</h2>
+    <ul>
+        <li>
+            <strong>BTech Computer Science</strong> - LPU (2023-Present)
+        </li>
+    </ul>
+
+    <h2>Tarining</h2>
+
+    <ul>
+        <li>
+            <strong>Certified Ethical Hacker | EC-Council </strong>
+            <p>Completed training in ethical hacking methodologies, penetration testing concepts, and vulnerability
+                assessment techniques.
+                Gained practical knowledge of reconnaissance, scanning, enumeration, and exploitation using tools like
+                Nmap and Metasploit.
+                Studied web application attacks including SQL Injection, XSS, password cracking, and privilege
+                escalation techniques.
+                Developed understanding of network security, system hacking, malware analysis, and security
+                countermeasures.</p>
+        </li>
+        <li>
+            <strong>Certified AI Security Specialist (CAISS) | Ampcus Cyber </strong>
+            <p>SOC Optimization: Trained to integrate AI tools into Security Operations Centers to speed up
+                vulnerability
+                assessments and automate threat intelligence.
+                - Adversarial Defense: Specialized in protecting ML models against adversarial attacks, such as data
+                poisoning and
+                input manipulation.
+                - Model Integrity: Focused on preventing model extraction and unauthorized reverse-engineering of
+                proprietary AI
+                systems.
+                - Advanced Threat Detection: Developed skills in using AI to identify complex, real-time security
+                patterns that
+                traditional systems might miss.</p>
+        </li>
+    </ul>
+
+    <h2>Skills</h2>
+    <p>Python, Django, PostgreSQL, JavaScript, HTML, CSS, Git</p>
+
+    <h2>Tools</h2>
+    <p>Kali Linux , Active-Directory, Wireshark, Nmap, Metasploit, Burp Suite, Nessus, VMware, Splunk,
+        Autopsy, Snort, Ettercap, Hydra , Aircrack-ng, PowerSploit, SQLmap, Maltego, OpenVAS, Recon-ng</p>
+    <div style="margin-top: 20px;">
+        <a href="{% static 'documents/CyberCV(CEH).pdf' %}" class="btn" download>Download Resume</a>
+    </div>
+</section>
+{% endblock %}

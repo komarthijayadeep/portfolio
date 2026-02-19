@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+<h1>Projects</h1>
+<div class="project-grid">
+    {% for project in projects %}
+    <div class="project-card">
+        {% if project.image %}
+        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+        {% else %}
+        <div class="project-image"
+            style="background-color: #ddd; display: flex; align-items: center; justify-content: center;">No Image</div>
+        {% endif %}
+        <div class="project-content">
+            <h3><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></h3>
+            <p>{{ project.description|truncatewords:20 }}</p>
+            <div class="tech-stack">
+                {% for tech in project.tech_stack.split %}
+                <span class="tech-tag">{{ tech }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No projects found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

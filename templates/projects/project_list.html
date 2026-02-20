@@ -16,10 +16,24 @@
         <div class="project-content">
             <h3><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></h3>
             <p>{{ project.description|truncatewords:20 }}</p>
-            <div class="tech-stack">
+            <div class="tech-stack" style="margin-bottom: 15px;">
                 {% for tech in project.tech_stack.split %}
                 <span class="tech-tag">{{ tech }}</span>
                 {% endfor %}
+            </div>
+            <div class="project-actions">
+                <a href="{% url 'project_detail' project.slug %}" class="btn"
+                    style="padding: 5px 15px; font-size: 0.9em; margin-right: 5px; margin-bottom: 5px; display: inline-block;">Read
+                    More</a>
+                {% if project.github_link %}
+                <a href="{{ project.github_link }}" class="btn" target="_blank"
+                    style="padding: 5px 15px; font-size: 0.9em; margin-right: 5px; margin-bottom: 5px; display: inline-block; background-color: #333; color: white;">GitHub</a>
+                {% endif %}
+                {% if project.live_demo_link %}
+                <a href="{{ project.live_demo_link }}" class="btn" target="_blank"
+                    style="padding: 5px 15px; font-size: 0.9em; margin-bottom: 5px; display: inline-block; background-color: #0056b3; color: white;">Live
+                    Demo</a>
+                {% endif %}
             </div>
         </div>
     </div>

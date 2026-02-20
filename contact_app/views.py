@@ -22,7 +22,7 @@ def contact_view(request):
                     subject,
                     body,
                     settings.EMAIL_HOST_USER,  # From email
-                    [settings.EMAIL_HOST_USER],  # To email (receiving the notification)
+                    [settings.EMAIL_HOST_USER, email],  # To email (receiving the notification)
                     fail_silently=False,
                 )
             except Exception as e:

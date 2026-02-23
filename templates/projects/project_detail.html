@@ -3,36 +3,64 @@
 {% block title %}{{ project.title }}{% endblock %}
 
 {% block content %}
-<article class="project-detail">
-    <h1>{{ project.title }}</h1>
+<div class="container" style="max-width: 900px; padding: 40px 0;">
+    <article class="project-detail"
+        style="background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 16px; border: 1px solid var(--glass-border); overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
 
-    {% if project.image %}
-    <img src="{{ project.image.url }}" alt="{{ project.title }}"
-        style="max-width: 100%; border-radius: 8px; margin-bottom: 20px;">
-    {% endif %}
-
-    <div class="project-meta">
-        <p><strong>Created:</strong> {{ project.created_date|date:"F j, Y" }}</p>
-        <div class="tech-stack" style="margin-bottom: 20px;">
-            {% for tech in project.tech_stack.split %}
-            <span class="tech-tag">{{ tech }}</span>
-            {% endfor %}
+        {% if project.image %}
+        <div
+            style="width: 100%; height: 400px; overflow: hidden; background: #0a0f16; border-bottom: 1px solid var(--glass-border);">
+            <img src="{{ project.image.url }}" alt="{{ project.title }}"
+                style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
         </div>
+        {% endif %}
 
-        <div class="links" style="margin-bottom: 20px;">
-            {% if project.github_link %}
-            <a href="{{ project.github_link }}" class="btn" target="_blank">View Code</a>
-            {% endif %}
-            {% if project.live_demo_link %}
-            <a href="{{ project.live_demo_link }}" class="btn" target="_blank">Live Demo</a>
-            {% endif %}
+        <div style="padding: 40px;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 20px;">{{ project.title }}</h1>
+
+            <div class="project-meta"
+                style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div>
+                    <p
+                        style="color: var(--text-color); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">
+                        <strong>Created:</strong> {{ project.created_date|date:"F j, Y" }}
+                    </p>
+                    <div class="tech-stack">
+                        {% for tech in project.tech_stack.split %}
+                        <span class="tech-tag" style="margin-bottom: 5px;">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="links" style="display: flex; gap: 15px; margin-top: 15px;">
+                    {% if project.github_link %}
+                    <a href="{{ project.github_link }}" class="btn" target="_blank"
+                        style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;"><i
+                            class="fab fa-github" style="margin-right: 8px;"></i>View Code</a>
+                    {% endif %}
+                    {% if project.live_demo_link %}
+                    <a href="{{ project.live_demo_link }}" class="btn" target="_blank"
+                        style="background: transparent; border: 1px solid var(--secondary-color); color: var(--secondary-color);"><i
+                            class="fas fa-external-link-alt" style="margin-right: 8px;"></i>Live Demo</a>
+                    {% endif %}
+                    {% if user.is_staff %}
+                    <a href="{% url 'project_delete' project.slug %}" class="btn"
+                        style="background: rgba(231, 76, 60, 0.1); border: 1px solid #e74c3c; color: #e74c3c;"><i
+                            class="fas fa-trash" style="margin-right: 8px;"></i>Delete Project</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="project-description" style="font-size: 1.1rem; line-height: 1.8; color: var(--text-color);">
+                {{ project.description|linebreaks }}
+            </div>
         </div>
-    </div>
+    </article>
 
-    <div class="project-description">
-        {{ project.description|linebreaks }}
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="{% url 'project_list' %}"
+            style="color: var(--primary-color); text-decoration: none; font-weight: 600; font-size: 1.1rem; letter-spacing: 0.5px;">&larr;
+            Back to All Projects</a>
     </div>
-
-    <a href="{% url 'project_list' %}" style="display: inline-block; margin-top: 30px;">&larr; Back to Projects</a>
-</article>
+</div>
 {% endblock %}

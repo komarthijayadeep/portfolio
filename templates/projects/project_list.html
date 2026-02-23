@@ -3,42 +3,61 @@
 {% block title %}Projects{% endblock %}
 
 {% block content %}
-<h1>Projects</h1>
-<div class="project-grid">
-    {% for project in projects %}
-    <div class="project-card">
-        {% if project.image %}
-        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
-        {% else %}
-        <div class="project-image"
-            style="background-color: #ddd; display: flex; align-items: center; justify-content: center;">No Image</div>
-        {% endif %}
-        <div class="project-content">
-            <h3><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></h3>
-            <p>{{ project.description|truncatewords:20 }}</p>
-            <div class="tech-stack" style="margin-bottom: 15px;">
-                {% for tech in project.tech_stack.split %}
-                <span class="tech-tag">{{ tech }}</span>
-                {% endfor %}
+<div class="container" style="padding: 40px 0;">
+    <div style="text-align: center; margin-bottom: 50px;">
+        <h1 style="font-size: 3rem; display: inline-block; position: relative;">
+            Our Projects
+            <div
+                style="position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--primary-color); border-radius: 2px;">
             </div>
-            <div class="project-actions">
-                <a href="{% url 'project_detail' project.slug %}" class="btn"
-                    style="padding: 5px 15px; font-size: 0.9em; margin-right: 5px; margin-bottom: 5px; display: inline-block;">Read
-                    More</a>
-                {% if project.github_link %}
-                <a href="{{ project.github_link }}" class="btn" target="_blank"
-                    style="padding: 5px 15px; font-size: 0.9em; margin-right: 5px; margin-bottom: 5px; display: inline-block; background-color: #333; color: white;">GitHub</a>
-                {% endif %}
-                {% if project.live_demo_link %}
-                <a href="{{ project.live_demo_link }}" class="btn" target="_blank"
-                    style="padding: 5px 15px; font-size: 0.9em; margin-bottom: 5px; display: inline-block; background-color: #0056b3; color: white;">Live
-                    Demo</a>
-                {% endif %}
+        </h1>
+        <p style="color: var(--text-color); font-size: 1.1rem; margin-top: 15px;">Explore my recent work and security
+            initiatives.
+        </p>
+    </div>
+
+    <div class="project-grid">
+        {% for project in projects %}
+        <div class="project-card">
+            {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+            {% else %}
+            <div class="project-image"
+                style="display: flex; align-items: center; justify-content: center; color: var(--text-color);">
+                <i class="fas fa-image fa-3x" style="opacity: 0.5;"></i>
+            </div>
+            {% endif %}
+            <div class="project-content" style="flex: 1; display: flex; flex-direction: column;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">
+                    <a href="{% url 'project_detail' project.slug %}">
+                        {{ project.title }}
+                    </a>
+                </h3>
+                <p style="color: var(--text-color); margin-bottom: 20px; flex: 1;">
+                    {{ project.description|truncatewords:20 }}
+                </p>
+                <div class="tech-stack" style="margin-bottom: 25px;">
+                    {% for tech in project.tech_stack.split %}
+                    <span class="tech-tag">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                <div class="project-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="{% url 'project_detail' project.slug %}" class="btn"
+                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center;">Details</a>
+                    {% if project.github_link %}
+                    <a href="{{ project.github_link }}" class="btn" target="_blank"
+                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">GitHub</a>
+                    {% endif %}
+                    {% if project.live_demo_link %}
+                    <a href="{{ project.live_demo_link }}" class="btn" target="_blank"
+                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center; background: transparent; border: 1px solid var(--secondary-color); color: var(--secondary-color);">Demo</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
+        {% empty %}
+        <p style="text-align: center; width: 100%; color: var(--text-color); font-size: 1.2rem;">No projects found.</p>
+        {% endfor %}
     </div>
-    {% empty %}
-    <p>No projects found.</p>
-    {% endfor %}
 </div>
 {% endblock %}

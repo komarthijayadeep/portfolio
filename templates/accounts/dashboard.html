@@ -27,6 +27,16 @@
 </div>
 {% endif %}
 
+{% if user.is_staff %}
+<div
+    style="margin-top: 30px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+    <h2>Project Management</h2>
+    <p style="margin-bottom: 15px; color: var(--text-color);">Manage your portfolio projects directly from your
+        dashboard.</p>
+    <a href="{% url 'project_create' %}" class="btn" style="background-color: #2ecc71;">Add New Project</a>
+</div>
+{% endif %}
+
 <div style="margin-top: 30px;">
     <form action="{% url 'logout' %}" method="post" class="logout-form">
         {% csrf_token %}

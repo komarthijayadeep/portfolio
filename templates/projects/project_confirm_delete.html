@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm Deletion - {{ project.title }}{% endblock %}
+
+{% block content %}
+<div class="container"
+    style="max-width: 600px; margin: 60px auto; text-align: center; padding: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+
+    <div style="font-size: 3rem; color: #e74c3c; margin-bottom: 20px;">
+        <i class="fas fa-exclamation-triangle"></i>
+    </div>
+
+    <h1 style="margin-bottom: 20px; font-size: 2rem; color: #e74c3c;">Delete Project?</h1>
+
+    <p style="font-size: 1.2rem; margin-bottom: 30px; color: var(--text-color);">
+        Are you absolutely sure you want to delete the project <strong>"{{ project.title }}"</strong>?
+        <br><br>
+        <span style="color: #ff6b6b; font-size: 0.9rem;">This action cannot be undone.</span>
+    </p>
+
+    <form method="post"
+        style="display: flex; justify-content: center; gap: 20px; background: transparent; box-shadow: none; border: none; padding: 0;">
+        {% csrf_token %}
+        <a href="{% url 'project_detail' project.slug %}" class="btn"
+            style="background-color: #7f8c8d; padding: 12px 30px;">Cancel</a>
+        <button type="submit" class="btn" style="background-color: #e74c3c; padding: 12px 30px;">Yes, Delete It</button>
+    </form>
+</div>
+{% endblock %}

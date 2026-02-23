@@ -2,40 +2,73 @@
 {% load static %}
 
 {% block content %}
-<section class="hero">
-    <img src="{% static 'images/linkdin.png' %}" alt="Profile Picture" class="profile-img">
-    <h1>Welcome to My Portfolio</h1>
-    <p>Hi, I am a Cyber Security Student | Certified Ethical Hacker V13 (CEH) | TryHackme Top 8% | Vulnerability
-        Assessment | Network Security |Certified AI Security Specialist (CAISS) | Linux | CTF Player.</p>
-    <br><br>
-    <a href="{% url 'project_list' %}" class="btn">View My Work</a>
-    <br><br>
-    <p>A dedicated and detail-oriented cybersecurity student with a passion for ethical hacking and network defense. My
-        journey into security is built on a solid foundation in computer networking, validated by certifications from
-        Google and the University of Colorado.I also progressed in CAISS.
+<section class="hero" style="min-height: 90vh; padding-top: 80px;">
+    <div
+        style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 60px; max-width: 1000px; margin: 0 auto;">
 
-        I have progressed to advanced, hands-on skills in Vulnerability Assessment and Penetration Testing (VAPT),
-        moving from fundamental principles to advanced ethical hacking techniques. My proficiency in Python allows me to
-        move beyond using off-the-shelf tools, enabling me to script custom solutions and automate security tasks
-        effectively.
+        <div style="flex: 1; min-width: 300px; text-align: left;">
+            <p
+                style="color: var(--primary-color); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;">
+                Hello, I am</p>
+            <h1 style="font-size: 3.5rem; margin-bottom: 15px; line-height: 1.2;">Jayadeep</h1>
+            <h2 style="font-size: 1.5rem; color: var(--text-color); font-weight: 400; margin-bottom: 30px;">Cyber
+                Security Student
+                & Enthusiast</h2>
+            <p style="color: var(--text-color); font-size: 1.1rem; margin-bottom: 40px; max-width: 500px;">
+                Dedicated to ethical hacking, network defense, and exploring modern security challenges.
+            </p>
+            <div style="display: flex; gap: 20px;">
+                <a href="{% url 'project_list' %}" class="btn">View My Work</a>
+                <a href="{% url 'contact' %}" class="btn"
+                    style="background: transparent; border: 1px solid var(--primary-color); color: var(--primary-color);">Contact
+                    Me</a>
+            </div>
+        </div>
 
-        Core Competencies:
+        <div style="flex: 1; min-width: 300px; display: flex; justify-content: center; position: relative;">
+            <div
+                style="position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0, 242, 254, 0.2) 0%, transparent 70%); z-index: -1; transform: scale(1.5);">
+            </div>
+            <img src="{% static 'images/linkdin.png' %}" alt="Profile Picture" class="profile-img"
+                style="width: 280px; height: 280px; border-color: var(--primary-color); box-shadow: 0 0 40px rgba(0, 242, 254, 0.3);">
+        </div>
 
-        Ethical Hacking & VAPT: Comprehensive training in identifying, analyzing, and mitigating system vulnerabilities.
-
-        Network Security: In-depth knowledge of network protocols, infrastructure, and secure communication.
-
-        Python for Security: Proven ability to develop custom scripts for reconnaissance and task automation.
-
-        Emerging Threats: Knowledgeable in modern security challenges, including AI and Generative AI systems.
-
-        As an ISC2 Candidate, I am committed to continuous learning and upholding the highest ethical standards in the
-        industry. I am actively seeking an internship or entry-level role where I can apply my skills to solve
-        real-world security challenges and contribute to a dynamic security team</p>
+    </div>
 </section>
 
-<section class="recent-projects">
-    <h2>Recent Projects</h2>
+<section class="about-summary" style="padding: 80px 0;">
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 40px;">About My Journey</h2>
+        <p style="color: var(--text-color); font-size: 1.15rem; margin-bottom: 20px;">
+            My journey into security is built on a solid foundation in computer networking, validated by certifications
+            from Google and the University of Colorado. I have progressed to advanced, hands-on skills in
+            <strong>Vulnerability Assessment and Penetration Testing (VAPT)</strong>, moving from fundamental principles
+            to advanced ethical hacking techniques.
+        </p>
+        <p style="color: var(--text-color); font-size: 1.15rem; margin-bottom: 40px;">
+            My proficiency in <strong>Python</strong> allows me to move beyond using off-the-shelf tools, enabling me to
+            script custom solutions and automate security tasks effectively. As an ISC2 Candidate, I am committed to
+            continuous learning and upholding the highest ethical standards.
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+            <span class="tech-tag" style="font-size: 1rem; padding: 10px 20px;">CEH V13</span>
+            <span class="tech-tag" style="font-size: 1rem; padding: 10px 20px;">TryHackMe Top 6%</span>
+            <span class="tech-tag" style="font-size: 1rem; padding: 10px 20px;">CAISS</span>
+            <span class="tech-tag" style="font-size: 1rem; padding: 10px 20px;">Linux & CTFs</span>
+        </div>
+    </div>
+</section>
+
+<section class="recent-projects" style="padding-bottom: 80px;">
+    <div style="text-align: center; margin-bottom: 50px;">
+        <h2 style="font-size: 2.5rem; display: inline-block; position: relative;">
+            Recent Projects
+            <div
+                style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--primary-color); border-radius: 2px;">
+            </div>
+        </h2>
+    </div>
     <div class="project-grid">
         {% for project in projects %}
         <div class="project-card">
@@ -43,35 +76,40 @@
             <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
             {% else %}
             <div class="project-image"
-                style="background-color: #ddd; display: flex; align-items: center; justify-content: center;">No Image
+                style="display: flex; align-items: center; justify-content: center; color: var(--text-color);">
+                <i class="fas fa-image fa-3x" style="opacity: 0.5;"></i>
             </div>
             {% endif %}
-            <div class="project-content">
-                <h3><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></h3>
-                <p>{{ project.description|truncatewords:20 }}</p>
-                <div class="tech-stack" style="margin-bottom: 15px;">
+            <div class="project-content" style="flex: 1; display: flex; flex-direction: column;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">
+                    <a href="{% url 'project_detail' project.slug %}">
+                        {{ project.title }}
+                    </a>
+                </h3>
+                <p style="color: var(--text-color); margin-bottom: 20px; flex: 1;">
+                    {{ project.description|truncatewords:20 }}
+                </p>
+                <div class="tech-stack" style="margin-bottom: 25px;">
                     {% for tech in project.tech_stack.split %}
                     <span class="tech-tag">{{ tech }}</span>
                     {% endfor %}
                 </div>
-                <div class="project-actions">
+                <div class="project-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
                     <a href="{% url 'project_detail' project.slug %}" class="btn"
-                        style="padding: 5px 15px; font-size: 0.9em; margin-right: 5px; margin-bottom: 5px; display: inline-block;">Read
-                        More</a>
+                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center;">Details</a>
                     {% if project.github_link %}
                     <a href="{{ project.github_link }}" class="btn" target="_blank"
-                        style="padding: 5px 15px; font-size: 0.9em; margin-right: 5px; margin-bottom: 5px; display: inline-block; background-color: #333; color: white;">GitHub</a>
+                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">GitHub</a>
                     {% endif %}
                     {% if project.live_demo_link %}
                     <a href="{{ project.live_demo_link }}" class="btn" target="_blank"
-                        style="padding: 5px 15px; font-size: 0.9em; margin-bottom: 5px; display: inline-block; background-color: #0056b3; color: white;">Live
-                        Demo</a>
+                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center; background: transparent; border: 1px solid var(--secondary-color); color: var(--secondary-color);">Demo</a>
                     {% endif %}
                 </div>
             </div>
         </div>
         {% empty %}
-        <p>No projects yet.</p>
+        <p style="text-align: center; width: 100%; color: var(--text-color); font-size: 1.2rem;">No projects yet.</p>
         {% endfor %}
     </div>
 </section>

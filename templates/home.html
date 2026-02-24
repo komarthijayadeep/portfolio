@@ -2,115 +2,295 @@
 {% load static %}
 
 {% block content %}
-<section class="hero" style="min-height: 90vh; padding-top: 80px;">
-    <div
-        style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 60px; max-width: 1000px; margin: 0 auto;">
+<section class="hero" style="min-height: 80vh; padding-top: 40px; display: flex; align-items: center;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 40px; width: 100%;">
 
-        <div style="flex: 1; min-width: 300px; text-align: left;">
-            <p
-                style="color: var(--primary-color); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;">
-                Hello, I am</p>
-            <h1 style="font-size: 3.5rem; margin-bottom: 15px; line-height: 1.2;">Jayadeep</h1>
-            <h2 style="font-size: 1.5rem; color: var(--text-color); font-weight: 400; margin-bottom: 30px;">Cyber
-                Security Student
-                & Enthusiast</h2>
-            <p style="color: var(--text-color); font-size: 1.1rem; margin-bottom: 40px; max-width: 500px;">
-                Dedicated to ethical hacking, network defense, and exploring modern security challenges.
-            </p>
-            <div style="display: flex; gap: 20px;">
-                <a href="{% url 'project_list' %}" class="btn">View My Work</a>
-                <a href="{% url 'contact' %}" class="btn"
-                    style="background: transparent; border: 1px solid var(--primary-color); color: var(--primary-color);">Contact
-                    Me</a>
+        <div class="terminal-window" style="flex: 1; min-width: 320px; max-width: 600px;">
+            <div class="terminal-header">
+                <span>root@jayadeep:~</span>
+                <span>_ &square; &times;</span>
+            </div>
+            <div class="terminal-body">
+                <p style="color: var(--secondary-color); margin-bottom: 5px;">$ whoami</p>
+                <h1 style="font-size: 2.8rem; margin-bottom: 15px; margin-top: 5px;" class="terminal-text">Jayadeep</h1>
+
+                <p style="color: var(--secondary-color); margin-bottom: 5px;">$ cat role.txt</p>
+                <h2 style="font-size: 1.2rem; color: var(--primary-color); border: none; margin-bottom: 20px;">> Cyber
+                    Security Student & Enthusiast</h2>
+
+                <p style="color: var(--secondary-color); margin-bottom: 5px;">$ cat mission.md</p>
+                <p style="color: var(--text-color); font-size: 1rem; margin-bottom: 30px; line-height: 1.8;">
+                    Dedicated to ethical hacking, network defense, and exploring modern security challenges. Ready to
+                    secure the digital frontier.
+                </p>
+
+                <p style="color: var(--secondary-color); margin-bottom: 10px;">$ ./execute_actions.sh</p>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <a href="{% url 'project_list' %}" class="btn">[View Projects]</a>
+                    <a href="{% url 'contact' %}" class="btn">[Contact_Me]</a>
+                </div>
+                <!-- Blink Cursor at the end -->
+                <p style="margin-top: 15px;"><span style="color: var(--secondary-color);">$</span> <span class="cursor"
+                        style="position: static; display: inline-block; vertical-align: middle;"></span></p>
             </div>
         </div>
 
-        <div style="flex: 1; min-width: 300px; display: flex; justify-content: center; position: relative;">
+        <div style="flex: 0 1 300px; display: flex; justify-content: center; align-items: center; position: relative;">
             <div
-                style="position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0, 242, 254, 0.2) 0%, transparent 70%); z-index: -1; transform: scale(1.5);">
+                style="position: absolute; width: 270px; height: 270px; border: 2px dashed var(--primary-color); border-radius: 50%; z-index: -1; opacity: 0.8; box-shadow: 0 0 15px var(--shadow-color);">
             </div>
             <img src="{% static 'images/linkdin.png' %}" alt="Profile Picture" class="profile-img"
-                style="width: 280px; height: 280px; border-color: var(--primary-color); box-shadow: 0 0 40px rgba(0, 242, 254, 0.3);">
+                style="width: 250px; height: 250px; border-radius: 50%; border: 3px solid var(--bg-color); object-fit: cover; filter: grayscale(100%) contrast(1.2); box-shadow: 0 0 20px var(--primary-color);">
         </div>
 
     </div>
 </section>
 
-<section class="about-summary" style="padding: 80px 0;">
-    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-        <h2 style="font-size: 2.5rem; margin-bottom: 40px;">About My Journey</h2>
-        <p style="color: var(--text-color); font-size: 1.15rem; margin-bottom: 20px;">
+<section class="about-summary terminal-window" style="margin-top: 50px;">
+    <div class="terminal-header">
+        <span>root@jayadeep:~/about</span>
+        <span>_ &square; &times;</span>
+    </div>
+    <div class="terminal-body">
+        <p style="color: var(--secondary-color); margin-bottom: 15px;">$ less journey.txt</p>
+        <p style="margin-bottom: 20px;">
             My journey into security is built on a solid foundation in computer networking, validated by certifications
             from Google and the University of Colorado. I have progressed to advanced, hands-on skills in
-            <strong>Vulnerability Assessment and Penetration Testing (VAPT)</strong>, moving from fundamental principles
+            <strong style="color: #fff; background-color: var(--secondary-color); padding: 0 5px;">Vulnerability
+                Assessment and Penetration Testing (VAPT)</strong>, moving from fundamental principles
             to advanced ethical hacking techniques.
         </p>
-        <p style="color: var(--text-color); font-size: 1.15rem; margin-bottom: 40px;">
-            My proficiency in <strong>Python</strong> allows me to move beyond using off-the-shelf tools, enabling me to
+        <p style="margin-bottom: 30px;">
+            My proficiency in <strong style="color: var(--accent-color);">[Python]</strong> allows me to move beyond
+            using off-the-shelf tools, enabling me to
             script custom solutions and automate security tasks effectively. As an ISC2 Candidate, I am committed to
             continuous learning and upholding the highest ethical standards.
         </p>
 
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-            <span class="tech-tag" style="font-size: 1rem; padding: 10px 20px;">CEH V13</span>
-            <span class="tech-tag" style="font-size: 1rem; padding: 10px 20px;">TryHackMe Top 6%</span>
-            <span class="tech-tag" style="font-size: 1rem; padding: 10px 20px;">CAISS</span>
-            <span class="tech-tag" style="font-size: 1rem; padding: 10px 20px;">Linux & CTFs</span>
+        <p style="color: var(--secondary-color); margin-bottom: 15px;">$ check_stats --tags</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <span class="tech-tag">[CEH V13]</span>
+            <span class="tech-tag">[TryHackMe Top 6%]</span>
+            <span class="tech-tag">[CAISS]</span>
+            <span class="tech-tag">[Linux & CTFs]</span>
         </div>
     </div>
 </section>
 
-<section class="recent-projects" style="padding-bottom: 80px;">
-    <div style="text-align: center; margin-bottom: 50px;">
-        <h2 style="font-size: 2.5rem; display: inline-block; position: relative;">
-            Recent Projects
-            <div
-                style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--primary-color); border-radius: 2px;">
-            </div>
-        </h2>
+<section class="recent-projects" style="padding: 50px 0;">
+    <div>
+        <h2 style="font-size: 2rem;">> ls -la ./recent_projects/</h2>
     </div>
+
     <div class="project-grid">
         {% for project in projects %}
         <div class="project-card">
+            <div class="terminal-header" style="font-size: 0.8em;">
+                <span>file: {{ project.slug }}.exe</span>
+            </div>
             {% if project.image %}
             <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
             {% else %}
             <div class="project-image"
-                style="display: flex; align-items: center; justify-content: center; color: var(--text-color);">
-                <i class="fas fa-image fa-3x" style="opacity: 0.5;"></i>
+                style="display: flex; align-items: center; justify-content: center; background: #001100; border-bottom: 1px solid var(--secondary-color);">
+                <span style="font-size: 3rem; color: var(--secondary-color);">[ NO_IMAGE ]</span>
             </div>
             {% endif %}
-            <div class="project-content" style="flex: 1; display: flex; flex-direction: column;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">
-                    <a href="{% url 'project_detail' project.slug %}">
-                        {{ project.title }}
-                    </a>
-                </h3>
-                <p style="color: var(--text-color); margin-bottom: 20px; flex: 1;">
-                    {{ project.description|truncatewords:20 }}
+
+            <div class="project-content">
+                <h3><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></h3>
+                <p style="color: var(--secondary-color); font-size: 0.8rem; margin-bottom: 5px;">
+                    [ CREATED ] {{ project.created_date|date:"F j, Y" }}
                 </p>
-                <div class="tech-stack" style="margin-bottom: 25px;">
+                <p style="margin-bottom: 15px; font-size: 0.9em; flex: 1;">
+                    {{ project.description|truncatewords:15 }}
+                </p>
+                <div class="tech-stack">
                     {% for tech in project.tech_stack.split %}
                     <span class="tech-tag">{{ tech }}</span>
                     {% endfor %}
                 </div>
-                <div class="project-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto;">
                     <a href="{% url 'project_detail' project.slug %}" class="btn"
-                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center;">Details</a>
+                        style="flex: 1; text-align: center; padding: 5px;">[RUN]</a>
                     {% if project.github_link %}
                     <a href="{{ project.github_link }}" class="btn" target="_blank"
-                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">GitHub</a>
+                        style="flex: 1; text-align: center; padding: 5px; border-color: var(--secondary-color); color: var(--secondary-color);">[SRC]</a>
                     {% endif %}
                     {% if project.live_demo_link %}
                     <a href="{{ project.live_demo_link }}" class="btn" target="_blank"
-                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center; background: transparent; border: 1px solid var(--secondary-color); color: var(--secondary-color);">Demo</a>
+                        style="flex: 1; text-align: center; padding: 5px; border-color: var(--accent-color); color: var(--accent-color);">[DEMO]</a>
                     {% endif %}
                 </div>
             </div>
         </div>
         {% empty %}
-        <p style="text-align: center; width: 100%; color: var(--text-color); font-size: 1.2rem;">No projects yet.</p>
+        <div class="terminal-window" style="width: 100%;">
+            <div class="terminal-body" style="text-align: center;">
+                <p style="color: var(--accent-color);">Error: Directory Empty.</p>
+            </div>
+        </div>
         {% endfor %}
     </div>
 </section>
+
+<section class="crypto-terminal" style="margin-top: 50px; margin-bottom: 50px;">
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <span>root@jayadeep:~/crypto_tool</span>
+            <span>_ &square; &times;</span>
+        </div>
+        <div class="terminal-body" style="min-height: 300px; display: flex; flex-direction: column;">
+            <p style="color: var(--secondary-color); margin-bottom: 10px;">$ ./crypto_suite.sh --interactive</p>
+            <p style="margin-bottom: 15px; color: var(--text-color);">Enter plaintext to encrypt or a hash to decrypt
+                via dictionary attack.</p>
+
+            <div id="crypto-output"
+                style="flex: 1; overflow-y: auto; margin-bottom: 15px; font-size: 0.9em; color: var(--text-color); max-height: 300px; border: 1px solid rgba(0, 255, 65, 0.2); padding: 10px; background: rgba(0, 0, 0, 0.5);">
+                <!-- Output goes here -->
+                <p><span style="color: var(--secondary-color)">[SYSTEM]</span> Initialized local rainbow tables.</p>
+                <p><span style="color: var(--secondary-color)">[SYSTEM]</span> Supported algorithms: SHA-512, MD5.</p>
+            </div>
+
+            <div
+                style="display: flex; align-items: center; border-top: 1px solid var(--primary-color); padding-top: 15px; flex-wrap: wrap; gap: 10px;">
+                <span class="prompt" style="color: var(--secondary-color);">></span>
+                <input type="text" id="crypto-input" placeholder="Type payload or hash..."
+                    style="flex: 1; min-width: 200px; background: transparent; border: none; color: var(--text-color); font-family: inherit; font-size: 1rem; outline: none; border-bottom: 1px solid var(--secondary-color);">
+
+                <select id="algo-select"
+                    style="background: var(--bg-color); color: var(--primary-color); border: 1px solid var(--primary-color); padding: 5px; font-family: inherit; outline: none;">
+                    <option value="SHA-512">SHA-512</option>
+                    <option value="MD5">MD5</option>
+                </select>
+
+                <button id="encrypt-btn" class="btn" style="padding: 5px 15px;">[ENCRYPT]</button>
+                <button id="decrypt-btn" class="btn"
+                    style="padding: 5px 15px; border-color: var(--accent-color); color: var(--accent-color);">[DECRYPT]</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Include CryptoJS for MD5 support since WebCrypto doesn't support MD5 natively -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const encryptBtn = document.getElementById("encrypt-btn");
+        const decryptBtn = document.getElementById("decrypt-btn");
+        const cryptoInput = document.getElementById("crypto-input");
+        const cryptoOutput = document.getElementById("crypto-output");
+        const algoSelect = document.getElementById("algo-select");
+
+        // Local "Rainbow Table" for simulating decryption (cracking)
+        // Pre-populated with some common passwords + their hashes so decryption works immediately for these
+        const rainbowTable = new Map();
+
+        async function prepopulateRainbowTable() {
+            const commonPasswords = ['admin', 'password', '123456', 'qwerty', 'root', 'jayadeep'];
+            for (let pwd of commonPasswords) {
+                const sha512Hash = await encryptSHA512(pwd);
+                const md5Hash = encryptMD5(pwd);
+                rainbowTable.set(sha512Hash, pwd);
+                rainbowTable.set(md5Hash, pwd);
+            }
+        }
+        prepopulateRainbowTable();
+
+        async function encryptSHA512(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-512', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        function encryptMD5(password) {
+            return CryptoJS.MD5(password).toString();
+        }
+
+        function appendLog(html) {
+            const log = document.createElement("p");
+            log.innerHTML = html;
+            log.style.marginBottom = "5px";
+            cryptoOutput.appendChild(log);
+            cryptoOutput.scrollTop = cryptoOutput.scrollHeight;
+            return log;
+        }
+
+        async function handleEncrypt() {
+            const payload = cryptoInput.value;
+            if (!payload) return;
+            cryptoInput.value = "";
+
+            const algo = algoSelect.value;
+
+            appendLog(`<br><span style="color: var(--secondary-color)">> ./encrypt.sh --payload="********" --alg=${algo}</span>`);
+
+            const hashLog = appendLog(`<span>[~] Calculating ${algo} Hash...</span>`);
+
+            let hashHex = "";
+            if (algo === "SHA-512") {
+                hashHex = await encryptSHA512(payload);
+            } else if (algo === "MD5") {
+                hashHex = encryptMD5(payload);
+            }
+
+            // Store in rainbow table for future decryption
+            rainbowTable.set(hashHex, payload);
+
+            setTimeout(() => {
+                hashLog.innerHTML = `<span style="color: var(--primary-color)">[✓] ENCRYPTED (${algo}):</span> <span style="word-break: break-all; color: var(--text-color);">${hashHex}</span>`;
+                cryptoOutput.scrollTop = cryptoOutput.scrollHeight;
+            }, 400);
+        }
+
+        async function handleDecrypt() {
+            const targetHash = cryptoInput.value.trim().toLowerCase();
+            if (!targetHash) return;
+            cryptoInput.value = "";
+
+            const algo = algoSelect.value;
+
+            // Validate hash length superficially
+            if (algo === 'MD5' && targetHash.length !== 32) {
+                appendLog(`<br><span style="color: var(--accent-color)">[!] Error: Invalid MD5 hash format. Length should be 32 characters.</span>`);
+                return;
+            } else if (algo === 'SHA-512' && targetHash.length !== 128) {
+                appendLog(`<br><span style="color: var(--accent-color)">[!] Error: Invalid SHA-512 hash format. Length should be 128 characters.</span>`);
+                return;
+            }
+
+            appendLog(`<br><span style="color: var(--secondary-color)">> ./crack_hash.sh --target="${targetHash.substring(0, 10)}..." --alg=${algo}</span>`);
+            const statusLog = appendLog(`<span>[~] Init brute-force dictionary attack against local rainbow tables...</span>`);
+
+            // Simulate cracking delay
+            setTimeout(() => {
+                if (rainbowTable.has(targetHash)) {
+                    const crackedPlaintext = rainbowTable.get(targetHash);
+                    statusLog.innerHTML = `
+                        <span style="color: var(--primary-color)">[✓] CRACK SUCCESSFUL! Hash match found in rainbow table.</span><br>
+                        <span style="color: var(--primary-color)">[✓] DECRYPTED PAYLOAD:</span> <span style="font-weight: bold; font-size: 1.1em; color: #fff;">${crackedPlaintext}</span>
+                    `;
+                } else {
+                    statusLog.innerHTML = `<span style="color: var(--accent-color)">[!] CRACK FAILED: Hash not found in local wordlist or rainbow tables. Requires heavier compute.</span>`;
+                }
+                cryptoOutput.scrollTop = cryptoOutput.scrollHeight;
+            }, 1200);
+        }
+
+        encryptBtn.addEventListener("click", handleEncrypt);
+        decryptBtn.addEventListener("click", handleDecrypt);
+
+        cryptoInput.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                if (e.shiftKey) {
+                    handleDecrypt();
+                } else {
+                    handleEncrypt();
+                }
+            }
+        });
+    });
+</script>
 {% endblock %}

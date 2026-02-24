@@ -4,20 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Portfolio{% endblock %}</title>
+    <title>{% block title %}Portfolio_Root_Access{% endblock %}</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2.0">
+    <!-- Fira Code & VT323 for terminal aesthetic -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=VT323&family=Share+Tech+Mono&display=swap">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.0">
 </head>
 
 <body>
     <header>
         <nav class="navbar">
             <div class="container">
-                <a href="{% url 'home' %}" class="logo">MyPortfolio</a>
+                <a href="{% url 'home' %}" class="logo">jayadeep</a>
                 <ul class="nav-links">
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'project_list' %}">Projects</a></li>
+                    <li><a href="{% url 'certificate_list' %}">Certificates</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
@@ -50,7 +54,8 @@
 
     <footer>
         <div class="container">
-            <p>&copy; {% now "Y" %} MyPortfolio. All rights reserved.</p>
+            <p>&gt; sys.exit(0)</p>
+            <p>&copy; {% now "Y" %} sysadm_jayadeep. All rights reserved.</p>
         </div>
     </footer>
 

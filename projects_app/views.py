@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import Project
-from .forms import ProjectForm
+from .models import Project, Certificate
+from .forms import ProjectForm, CertificateForm
 
 def home(request):
     projects = Project.objects.order_by('-created_date')[:3]  # Show recent 3 projects
@@ -13,6 +13,14 @@ def about(request):
 def project_list(request):
     projects = Project.objects.order_by('-created_date')
     return render(request, 'projects/project_list.html', {'projects': projects})
+
+def certificate_list(request):
+    certificates = Certificate.objects.order_by('-date_issued')
+    return render(request, 'certificates/certificate_list.html', {'certificates': certificates})
+
+def certificate_detail(request, id):
+    certificate = get_object_or_404(Certificate, id=id)
+    return render(request, 'certificates/certificate_detail.html', {'certificate': certificate})
 
 def project_detail(request, slug):
     project = get_object_or_404(Project, slug=slug)
@@ -36,3 +44,14 @@ def project_delete(request, slug):
         project.delete()
         return redirect('dashboard')
     return render(request, 'projects/project_confirm_delete.html', {'project': project})
+
+@user_passes_test(lambda u: u.is_staff)
+def certificate_create(request):
+    if request.method == 'POST':
+        form = CertificateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('certificate_list')
+    else:
+        form = CertificateForm()
+    return render(request, 'certificates/certificate_create.html', {'form': form})

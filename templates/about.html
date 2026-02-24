@@ -4,55 +4,77 @@
 {% block title %}About Me{% endblock %}
 
 {% block content %}
-<h1>About Me</h1>
+<div class="container" style="max-width: 800px; margin-top: 40px;">
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <span>root@jayadeep:~/about</span>
+            <span>_ &square; &times;</span>
+        </div>
+        <div class="terminal-body">
+            <h1 style="font-size: 2.5rem; text-shadow: none;">> cat about.md</h1>
 
-<section class="about-section">
-    <h2>Education</h2>
-    <ul>
-        <li>
-            <strong>BTech Computer Science</strong> - LPU (2023-Present)
-        </li>
-    </ul>
+            <section class="about-section" style="margin-top: 30px;">
+                <h2 style="font-size: 1.5rem; color: var(--primary-color);">[ Education ]</h2>
+                <ul style="list-style-type: none; margin-bottom: 30px;">
+                    <li><span style="color: var(--secondary-color);">></span> <strong>BTech Computer Science</strong> -
+                        LPU (2023-Present)</li>
+                </ul>
 
-    <h2>Training</h2>
+                <h2 style="font-size: 1.5rem; color: var(--primary-color);">[ Training ]</h2>
+                <ul style="list-style-type: none; margin-bottom: 30px;">
+                    <li style="margin-bottom: 20px;">
+                        <span style="color: var(--secondary-color);">></span> <strong>Certified Ethical Hacker |
+                            EC-Council</strong>
+                        <p
+                            style="margin-top: 10px; margin-left: 15px; border-left: 2px solid var(--secondary-color); padding-left: 10px; font-size: 0.9em;">
+                            Completed training in ethical hacking methodologies, penetration testing concepts, and
+                            vulnerability assessment techniques. Gained practical knowledge of reconnaissance, scanning,
+                            enumeration, and exploitation using tools like Nmap and Metasploit. Studied web application
+                            attacks including SQL Injection, XSS, password cracking, and privilege escalation
+                            techniques. Developed understanding of network security, system hacking, malware analysis,
+                            and security countermeasures.
+                        </p>
+                    </li>
+                    <li style="margin-bottom: 20px;">
+                        <span style="color: var(--secondary-color);">></span> <strong>Certified AI Security Specialist
+                            (CAISS) | Ampcus Cyber</strong>
+                        <p
+                            style="margin-top: 10px; margin-left: 15px; border-left: 2px solid var(--secondary-color); padding-left: 10px; font-size: 0.9em;">
+                            SOC Optimization: Trained to integrate AI tools into Security Operations Centers to speed up
+                            vulnerability assessments and automate threat intelligence.<br>
+                            - Adversarial Defense: Specialized in protecting ML models against adversarial attacks, such
+                            as data poisoning and input manipulation.<br>
+                            - Model Integrity: Focused on preventing model extraction and unauthorized
+                            reverse-engineering of proprietary AI systems.<br>
+                            - Advanced Threat Detection: Developed skills in using AI to identify complex, real-time
+                            security patterns that traditional systems might miss.
+                        </p>
+                    </li>
+                </ul>
 
-    <ul>
-        <li>
-            <strong>Certified Ethical Hacker | EC-Council </strong>
-            <p>Completed training in ethical hacking methodologies, penetration testing concepts, and vulnerability
-                assessment techniques.
-                Gained practical knowledge of reconnaissance, scanning, enumeration, and exploitation using tools like
-                Nmap and Metasploit.
-                Studied web application attacks including SQL Injection, XSS, password cracking, and privilege
-                escalation techniques.
-                Developed understanding of network security, system hacking, malware analysis, and security
-                countermeasures.</p>
-        </li>
-        <li>
-            <strong>Certified AI Security Specialist (CAISS) | Ampcus Cyber </strong>
-            <p>SOC Optimization: Trained to integrate AI tools into Security Operations Centers to speed up
-                vulnerability
-                assessments and automate threat intelligence.
-                - Adversarial Defense: Specialized in protecting ML models against adversarial attacks, such as data
-                poisoning and
-                input manipulation.
-                - Model Integrity: Focused on preventing model extraction and unauthorized reverse-engineering of
-                proprietary AI
-                systems.
-                - Advanced Threat Detection: Developed skills in using AI to identify complex, real-time security
-                patterns that
-                traditional systems might miss.</p>
-        </li>
-    </ul>
+                <h2 style="font-size: 1.5rem; color: var(--primary-color);">[ Skills ]</h2>
+                <p style="margin-bottom: 30px; margin-left: 15px;">Python, Django, PostgreSQL, Bash, HTML, CSS</p>
 
-    <h2>Skills</h2>
-    <p>Python, Django, PostgreSQL, Bash, HTML, CSS</p>
+                <h2 style="font-size: 1.5rem; color: var(--primary-color);">[ Tools ]</h2>
+                <p style="margin-bottom: 30px; margin-left: 15px; line-height: 1.8;">
+                    <span class="tech-tag">Kali Linux</span> <span class="tech-tag">Active-Directory</span> <span
+                        class="tech-tag">Wireshark</span> <span class="tech-tag">Nmap</span> <span
+                        class="tech-tag">Metasploit</span> <span class="tech-tag">Burp Suite</span> <span
+                        class="tech-tag">Nessus</span> <span class="tech-tag">VMware</span> <span
+                        class="tech-tag">Splunk</span> <span class="tech-tag">Autopsy</span> <span
+                        class="tech-tag">Snort</span> <span class="tech-tag">Ettercap</span> <span
+                        class="tech-tag">Hydra</span> <span class="tech-tag">Aircrack-ng</span> <span
+                        class="tech-tag">PowerSploit</span> <span class="tech-tag">SQLmap</span> <span
+                        class="tech-tag">Maltego</span> <span class="tech-tag">OpenVAS</span> <span
+                        class="tech-tag">Recon-ng</span>
+                </p>
 
-    <h2>Tools</h2>
-    <p>Kali Linux , Active-Directory, Wireshark, Nmap, Metasploit, Burp Suite, Nessus, VMware, Splunk,
-        Autopsy, Snort, Ettercap, Hydra , Aircrack-ng, PowerSploit, SQLmap, Maltego, OpenVAS, Recon-ng</p>
-    <div style="margin-top: 20px;">
-        <a href="{% static 'documents/CyberCV(CEH).pdf' %}" class="btn" download>Download Resume</a>
+                <div style="margin-top: 40px;">
+                    <p style="color: var(--secondary-color); margin-bottom: 10px;">$ ./download_resume.sh</p>
+                    <a href="{% static 'documents/CyberCV(CEH).pdf' %}" class="btn" download>[ Execute Download ]</a>
+                </div>
+            </section>
+        </div>
     </div>
-</section>
+</div>
 {% endblock %}

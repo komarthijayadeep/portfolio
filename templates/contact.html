@@ -3,44 +3,60 @@
 {% block title %}Contact{% endblock %}
 
 {% block content %}
-<h1>Contact Me</h1>
+<div class="container" style="max-width: 700px; margin-top: 40px;">
 
-<div class="contact-info">
-    <p>Feel free to reach out to me via email or connect on social media.</p>
-    <ul class="contact-list">
-        <li><strong>Email:</strong> <a href="komarthijayadeep@gmail.com">komarthijayadeep@gmail.com</a></li>
-        <li><strong>Phone:</strong> <a href="+91 9492344198">+91 9492344198</a></li>
-    </ul>
-    <div class="social-links">
-        <a href="https://www.linkedin.com/in/jayadeepkomarthi" target="_blank" class="social-btn linkedin">LinkedIn</a>
-        <a href="https://tryhackme.com/p/komarthijayadeep" target="_blank" class="social-btn tryhackme">TryHackMe</a>
-        <a href="https://github.com/komarthijayadeep" target="_blank" class="social-btn github">GitHub</a>
+    <div class="terminal-window" style="margin-bottom: 40px;">
+        <div class="terminal-header">
+            <span>root@jayadeep:~/contact</span>
+            <span>_ &square; &times;</span>
+        </div>
+        <div class="terminal-body">
+            <h1>> ping connection...</h1>
+
+            <div class="contact-info" style="border: none; box-shadow: none; padding: 10px 0; margin-bottom: 20px;">
+                <p style="color: var(--secondary-color);">// Feel free to reach out to me via email or connect on social
+                    media.</p>
+                <ul class="contact-list">
+                    <li><strong>Email:</strong> <a
+                            href="mailto:komarthijayadeep@gmail.com">komarthijayadeep@gmail.com</a></li>
+                    <li><strong>Phone:</strong> <a href="tel:+919492344198">+91 9492344198</a></li>
+                </ul>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/jayadeepkomarthi" target="_blank"
+                        class="social-btn">[LinkedIn]</a>
+                    <a href="https://tryhackme.com/p/komarthijayadeep" target="_blank"
+                        class="social-btn">[TryHackMe]</a>
+                    <a href="https://github.com/komarthijayadeep" target="_blank" class="social-btn">[GitHub]</a>
+                </div>
+            </div>
+
+            <p style="color: var(--secondary-color); margin-bottom: 15px; margin-top: 30px;">$ ./send_message.sh</p>
+            <form action="{% url 'contact' %}" method="post" id="contactForm"
+                style="box-shadow: none; padding: 0; border: none;">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Target_Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name...">
+                    <span class="error" id="nameError" style="color: var(--accent-color);"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Target_Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email...">
+                    <span class="error" id="emailError" style="color: var(--accent-color);"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Payload_Data</label>
+                    <textarea id="message" name="message" required placeholder="Enter message body..."></textarea>
+                    <span class="error" id="messageError" style="color: var(--accent-color);"></span>
+                </div>
+
+                <button type="submit" class="btn">[ Transmission_Start ]</button>
+            </form>
+        </div>
     </div>
 </div>
-
-
-<form action="{% url 'contact' %}" method="post" id="contactForm">
-    {% csrf_token %}
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-        <span class="error" id="nameError"></span>
-    </div>
-
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-        <span class="error" id="emailError"></span>
-    </div>
-
-    <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" required></textarea>
-        <span class="error" id="messageError"></span>
-    </div>
-
-    <button type="submit" class="btn">Send Message</button>
-</form>
 
 {% block extra_js %}
 <script>
@@ -52,17 +68,17 @@
         const message = document.getElementById('message');
 
         if (name.value.trim() === '') {
-            alert('Name is required');
+            alert('[ERROR]: Target_Name is required');
             valid = false;
         }
 
         if (email.value.trim() === '' || !email.value.includes('@')) {
-            alert('Valid email is required');
+            alert('[ERROR]: Valid Target_Email is required');
             valid = false;
         }
 
         if (message.value.trim() === '') {
-            alert('Message is required');
+            alert('[ERROR]: Payload_Data is required');
             valid = false;
         }
 

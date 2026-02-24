@@ -4,59 +4,63 @@
 
 {% block content %}
 <div class="container" style="padding: 40px 0;">
-    <div style="text-align: center; margin-bottom: 50px;">
-        <h1 style="font-size: 3rem; display: inline-block; position: relative;">
-            Our Projects
-            <div
-                style="position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--primary-color); border-radius: 2px;">
-            </div>
+    <div style="text-align: left; margin-bottom: 40px;">
+        <h1 style="font-size: 2.5rem; display: inline-block;">
+            > ls -la ./projects/
         </h1>
-        <p style="color: var(--text-color); font-size: 1.1rem; margin-top: 15px;">Explore my recent work and security
-            initiatives.
+        <p style="color: var(--secondary-color); font-size: 1.1rem; margin-top: 5px;">
+            // Exploit databases, tools, and research initiatives.
         </p>
     </div>
 
     <div class="project-grid">
         {% for project in projects %}
         <div class="project-card">
+            <div class="terminal-header" style="font-size: 0.8em;">
+                <span>file: {{ project.slug }}.exe</span>
+            </div>
             {% if project.image %}
             <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
             {% else %}
             <div class="project-image"
-                style="display: flex; align-items: center; justify-content: center; color: var(--text-color);">
-                <i class="fas fa-image fa-3x" style="opacity: 0.5;"></i>
+                style="display: flex; align-items: center; justify-content: center; background: #001100; border-bottom: 1px solid var(--secondary-color);">
+                <span style="font-size: 3rem; color: var(--secondary-color);">[ NO_IMAGE ]</span>
             </div>
             {% endif %}
-            <div class="project-content" style="flex: 1; display: flex; flex-direction: column;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">
-                    <a href="{% url 'project_detail' project.slug %}">
-                        {{ project.title }}
-                    </a>
-                </h3>
-                <p style="color: var(--text-color); margin-bottom: 20px; flex: 1;">
+
+            <div class="project-content">
+                <h3><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></h3>
+                <p style="color: var(--secondary-color); font-size: 0.8rem; margin-bottom: 5px;">
+                    [ CREATED ] {{ project.created_date|date:"F j, Y" }}
+                </p>
+                <p style="margin-bottom: 15px; font-size: 0.9em; flex: 1;">
                     {{ project.description|truncatewords:20 }}
                 </p>
-                <div class="tech-stack" style="margin-bottom: 25px;">
+                <div class="tech-stack" style="margin-bottom: 20px;">
                     {% for tech in project.tech_stack.split %}
                     <span class="tech-tag">{{ tech }}</span>
                     {% endfor %}
                 </div>
-                <div class="project-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto;">
                     <a href="{% url 'project_detail' project.slug %}" class="btn"
-                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center;">Details</a>
+                        style="flex: 1; text-align: center; padding: 5px;">[RUN]</a>
                     {% if project.github_link %}
                     <a href="{{ project.github_link }}" class="btn" target="_blank"
-                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">GitHub</a>
+                        style="flex: 1; text-align: center; padding: 5px; border-color: var(--secondary-color); color: var(--secondary-color);">[SRC]</a>
                     {% endif %}
                     {% if project.live_demo_link %}
                     <a href="{{ project.live_demo_link }}" class="btn" target="_blank"
-                        style="padding: 8px 16px; font-size: 0.9em; flex: 1; text-align: center; background: transparent; border: 1px solid var(--secondary-color); color: var(--secondary-color);">Demo</a>
+                        style="flex: 1; text-align: center; padding: 5px; border-color: var(--accent-color); color: var(--accent-color);">[DEMO]</a>
                     {% endif %}
                 </div>
             </div>
         </div>
         {% empty %}
-        <p style="text-align: center; width: 100%; color: var(--text-color); font-size: 1.2rem;">No projects found.</p>
+        <div class="terminal-window" style="width: 100%;">
+            <div class="terminal-body" style="text-align: center;">
+                <p style="color: var(--accent-color);">Error: Directory Empty.</p>
+            </div>
+        </div>
         {% endfor %}
     </div>
 </div>

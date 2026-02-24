@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ certificate.title }} - Details{% endblock %}
+
+{% block content %}
+<div class="container" style="padding: 40px 0; max-width: 900px;">
+
+    <article class="terminal-window">
+        <div class="terminal-header">
+            <span>root@jayadeep:~/certificates/{{ certificate.title|slugify }}.cert</span>
+            <span>_ &square; &times;</span>
+        </div>
+
+        <div class="terminal-body" style="padding: 30px;">
+            <p style="color: var(--secondary-color); margin-bottom: 5px;">$ file {{ certificate.title|slugify }}.cert
+            </p>
+            <h1 style="font-size: 2.5rem; margin-bottom: 20px; text-shadow: none;">> {{ certificate.title }}</h1>
+
+            <p style="color: var(--secondary-color); margin-bottom: 10px;">$ cat meta.info</p>
+            <div style="border-left: 2px solid var(--secondary-color); padding-left: 15px; margin-bottom: 30px;">
+                <h2 style="font-size: 1.2rem; color: var(--primary-color); border: none; padding: 0;">ISSUER: {{ certificate.issuer }}</h2>
+                {% if certificate.date_issued %}
+                <p style="color: var(--text-color); font-size: 1rem; margin-top: 5px;">
+                    DATE_ISSUED: {{ certificate.date_issued|date:"Y-m-d" }}
+                </p>
+                {% endif %}
+            </div>
+
+            {% if certificate.image %}
+            <p style="color: var(--secondary-color); margin-bottom: 10px;">$ img_viewer {{ certificate.title|slugify
+                }}.png</p>
+            <div
+                style="margin-bottom: 30px; border: 1px solid var(--primary-color); padding: 5px; background: var(--bg-color);">
+                <img src="{{ certificate.image.url }}" alt="{{ certificate.title }}"
+                    style="width: 100%; height: auto; display: block; filter: grayscale(10px) contrast(1.2);">
+            </div>
+            {% else %}
+            <p style="color: var(--secondary-color); margin-bottom: 10px;">$ ./extract_image.sh</p>
+            <div
+                style="margin-bottom: 30px; border: 1px dashed var(--accent-color); padding: 20px; text-align: center;">
+                <p style="color: var(--accent-color);">[ ERROR: NO_IMAGE_FOUND ]</p>
+            </div>
+            {% endif %}
+
+            <p style="color: var(--secondary-color); margin-bottom: 10px;">$ cat description.txt</p>
+            <div
+                style="color: var(--text-color); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; background: rgba(0, 255, 65, 0.05); padding: 15px; border-left: 1px solid var(--primary-color);">
+                {{ certificate.description|linebreaks }}
+            </div>
+
+            <p style="color: var(--secondary-color); margin-bottom: 10px;">$ ./verify_credential.sh</p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                {% if certificate.link %}
+                <a href="{{ certificate.link }}" target="_blank" class="btn"
+                    style="border-color: var(--secondary-color); color: var(--secondary-color);">[ VIEW_OFFICIAL ]</a>
+                {% endif %}
+                <a href="{% url 'certificate_list' %}" class="btn">[ BACK_TO_LIST ]</a>
+            </div>
+        </div>
+    </article>
+</div>
+{% endblock %}

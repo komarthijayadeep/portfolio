@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Add New Training{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 600px; margin-top: 40px;">
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <span>root@jayadeep:~/training/add</span>
+            <span>_ &square; &times;</span>
+        </div>
+        <div class="terminal-body" style="padding: 30px;">
+            <h2>> Add New Training</h2>
+            <form method="post" style="box-shadow: none; padding: 0; background: none; border: none; margin-top: 20px;">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn" style="margin-top: 20px;">[ Save_Data ]</button>
+            </form>
+            <a href="{% url 'dashboard' %}" class="btn"
+                style="margin-top: 20px; background: none; border: 1px solid var(--primary-color);">[
+                Return_to_Dashboard
+                ]</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

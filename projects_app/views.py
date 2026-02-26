@@ -1,14 +1,21 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import Project, Certificate
-from .forms import ProjectForm, CertificateForm
+from .models import Project, Certificate, Skill, Training
+from .forms import ProjectForm, CertificateForm, SkillForm, TrainingForm
 
 def home(request):
     projects = Project.objects.order_by('-created_date')[:3]  # Show recent 3 projects
     return render(request, 'home.html', {'projects': projects})
 
 def about(request):
-    return render(request, 'about.html')
+    skills = Skill.objects.filter(category='skill')
+    tools = Skill.objects.filter(category='tool')
+    trainings = Training.objects.all()
+    return render(request, 'about.html', {
+        'skills': skills,
+        'tools': tools,
+        'trainings': trainings
+    })
 
 def project_list(request):
     projects = Project.objects.order_by('-created_date')
@@ -55,3 +62,39 @@ def certificate_create(request):
     else:
         form = CertificateForm()
     return render(request, 'certificates/certificate_create.html', {'form': form})
+
+@user_passes_test(lambda u: u.is_staff)
+def skill_create(request):
+    if request.method == 'POST':
+        form = SkillForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('about')
+    else:
+        form = SkillForm()
+    return render(request, 'projects/skill_create.html', {'form': form})
+
+@user_passes_test(lambda u: u.is_staff)
+def training_create(request):
+    if request.method == 'POST':
+        form = TrainingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('about')
+    else:
+        form = TrainingForm()
+    return render(request, 'projects/training_create.html', {'form': form})
+
+@user_passes_test(lambda u: u.is_staff)
+def skill_delete(request, id):
+    skill = get_object_or_404(Skill, id=id)
+    if request.method == 'POST':
+        skill.delete()
+    return redirect('about')
+
+@user_passes_test(lambda u: u.is_staff)
+def training_delete(request, id):
+    training = get_object_or_404(Training, id=id)
+    if request.method == 'POST':
+        training.delete()
+    return redirect('about')

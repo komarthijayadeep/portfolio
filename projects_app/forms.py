@@ -1,5 +1,5 @@
 from django import forms
-from .models import Project, Certificate
+from .models import Project, Certificate, Skill, Training
 
 class ProjectForm(forms.ModelForm):
     class Meta:
@@ -17,4 +17,17 @@ class CertificateForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'rows': 5}),
             'date_issued': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+class SkillForm(forms.ModelForm):
+    class Meta:
+        model = Skill
+        fields = ['name', 'category']
+
+class TrainingForm(forms.ModelForm):
+    class Meta:
+        model = Training
+        fields = ['title', 'description']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 5}),
         }

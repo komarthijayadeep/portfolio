@@ -30,3 +30,21 @@ class Certificate(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.issuer}"
+
+class Skill(models.Model):
+    CATEGORY_CHOICES = (
+        ('skill', 'Core Skill'),
+        ('tool', 'Tool'),
+    )
+    name = models.CharField(max_length=100)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='skill')
+
+    def __str__(self):
+        return f"{self.name} ({self.get_category_display()})"
+
+class Training(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title

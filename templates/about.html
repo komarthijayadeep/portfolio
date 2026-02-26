@@ -22,52 +22,67 @@
 
                 <h2 style="font-size: 1.5rem; color: var(--primary-color);">[ Training ]</h2>
                 <ul style="list-style-type: none; margin-bottom: 30px;">
+                    {% for training in trainings %}
                     <li style="margin-bottom: 20px;">
-                        <span style="color: var(--secondary-color);">></span> <strong>Certified Ethical Hacker |
-                            EC-Council</strong>
+                        <span style="color: var(--secondary-color);">></span> <strong>{{ training.title }}</strong>
+                        {% if user.is_staff %}
+                        <form action="{% url 'training_delete' training.id %}" method="post"
+                            style="display:inline; padding: 0; margin: 0; background: none; border: none; box-shadow: none;">
+                            {% csrf_token %}
+                            <button type="submit"
+                                style="background: none; border: none; color: #e74c3c; cursor: pointer; font-size: 0.8em; padding: 0; margin-left: 5px;">[x]</button>
+                        </form>
+                        {% endif %}
                         <p
                             style="margin-top: 10px; margin-left: 15px; border-left: 2px solid var(--secondary-color); padding-left: 10px; font-size: 0.9em;">
-                            Completed training in ethical hacking methodologies, penetration testing concepts, and
-                            vulnerability assessment techniques. Gained practical knowledge of reconnaissance, scanning,
-                            enumeration, and exploitation using tools like Nmap and Metasploit. Studied web application
-                            attacks including SQL Injection, XSS, password cracking, and privilege escalation
-                            techniques. Developed understanding of network security, system hacking, malware analysis,
-                            and security countermeasures.
+                            {{ training.description|linebreaksbr }}
                         </p>
                     </li>
-                    <li style="margin-bottom: 20px;">
-                        <span style="color: var(--secondary-color);">></span> <strong>Certified AI Security Specialist
-                            (CAISS) | Ampcus Cyber</strong>
-                        <p
-                            style="margin-top: 10px; margin-left: 15px; border-left: 2px solid var(--secondary-color); padding-left: 10px; font-size: 0.9em;">
-                            SOC Optimization: Trained to integrate AI tools into Security Operations Centers to speed up
-                            vulnerability assessments and automate threat intelligence.<br>
-                            - Adversarial Defense: Specialized in protecting ML models against adversarial attacks, such
-                            as data poisoning and input manipulation.<br>
-                            - Model Integrity: Focused on preventing model extraction and unauthorized
-                            reverse-engineering of proprietary AI systems.<br>
-                            - Advanced Threat Detection: Developed skills in using AI to identify complex, real-time
-                            security patterns that traditional systems might miss.
-                        </p>
-                    </li>
+                    {% empty %}
+                    <li><span style="color: var(--secondary-color);">></span> No training records found.</li>
+                    {% endfor %}
                 </ul>
 
                 <h2 style="font-size: 1.5rem; color: var(--primary-color);">[ Skills ]</h2>
-                <p style="margin-bottom: 30px; margin-left: 15px;">Python, Django, PostgreSQL, Bash, HTML, CSS</p>
+                <div
+                    style="margin-bottom: 30px; margin-left: 15px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                    {% for skill in skills %}
+                    <span style="display: inline-flex; align-items: center; gap: 5px;">
+                        {{ skill.name }}
+                        {% if user.is_staff %}
+                        <form action="{% url 'skill_delete' skill.id %}" method="post"
+                            style="display:inline; padding: 0; margin: 0; background: none; border: none; box-shadow: none;">
+                            {% csrf_token %}
+                            <button type="submit"
+                                style="background: none; border: none; color: #e74c3c; cursor: pointer; font-size: 0.8em; padding: 0;">[x]</button>
+                        </form>
+                        {% endif %}
+                        {% if not forloop.last %}, {% endif %}
+                    </span>
+                    {% empty %}
+                    No skills listed yet.
+                    {% endfor %}
+                </div>
 
                 <h2 style="font-size: 1.5rem; color: var(--primary-color);">[ Tools ]</h2>
-                <p style="margin-bottom: 30px; margin-left: 15px; line-height: 1.8;">
-                    <span class="tech-tag">Kali Linux</span> <span class="tech-tag">Active-Directory</span> <span
-                        class="tech-tag">Wireshark</span> <span class="tech-tag">Nmap</span> <span
-                        class="tech-tag">Metasploit</span> <span class="tech-tag">Burp Suite</span> <span
-                        class="tech-tag">Nessus</span> <span class="tech-tag">VMware</span> <span
-                        class="tech-tag">Splunk</span> <span class="tech-tag">Autopsy</span> <span
-                        class="tech-tag">Snort</span> <span class="tech-tag">Ettercap</span> <span
-                        class="tech-tag">Hydra</span> <span class="tech-tag">Aircrack-ng</span> <span
-                        class="tech-tag">PowerSploit</span> <span class="tech-tag">SQLmap</span> <span
-                        class="tech-tag">Maltego</span> <span class="tech-tag">OpenVAS</span> <span
-                        class="tech-tag">Recon-ng</span>
-                </p>
+                <div
+                    style="margin-bottom: 30px; margin-left: 15px; line-height: 1.8; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                    {% for tool in tools %}
+                    <span class="tech-tag" style="display: inline-flex; align-items: center; gap: 5px;">
+                        {{ tool.name }}
+                        {% if user.is_staff %}
+                        <form action="{% url 'skill_delete' tool.id %}" method="post"
+                            style="display:inline; padding: 0; margin: 0; background: none; border: none; box-shadow: none;">
+                            {% csrf_token %}
+                            <button type="submit"
+                                style="background: none; border: none; color: #e74c3c; cursor: pointer; font-size: 0.8em; padding: 0; margin-left: 5px;">[x]</button>
+                        </form>
+                        {% endif %}
+                    </span>
+                    {% empty %}
+                    No tools listed yet.
+                    {% endfor %}
+                </div>
 
                 <div style="margin-top: 40px;">
                     <p style="color: var(--secondary-color); margin-bottom: 10px;">$ ./download_resume.sh</p>
